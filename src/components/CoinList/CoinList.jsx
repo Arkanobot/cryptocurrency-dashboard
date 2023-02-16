@@ -12,7 +12,7 @@ export default function CoinList() {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1"
       );
       dispatch(updateC(response.data));
     } catch (error) {
@@ -24,10 +24,8 @@ export default function CoinList() {
     fetchData();
   });
 
-  console.log(coins);
-
   return (
-    <div className="min-h-[75vh] min-w-[90vw] xl:min-w-[22.5vw] overflow-auto border-2 border-solid border-slate-50 rounded-lg shadow-md">
+    <div className="min-h-[75vh] min-w-[90vw] xl:min-w-[22.5vw] overflow-auto border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white">
       <div className="p-3 px-5 text-lg font-bold text-center italic border-b-2 border-solid border-slate-50">
         <span>Cryptocurrency by Market Cap</span>
       </div>
