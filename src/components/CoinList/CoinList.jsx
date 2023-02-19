@@ -5,25 +5,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateC } from "../../redux/coinData";
 
 export default function CoinList() {
-  // const [cryptoData, setCryptoData] = useState();
+  // getting currency and coin data from redux store
+  const { currency } = useSelector((store) => store.currency);
   const { coins } = useSelector((store) => store.coins);
+  //declaring a constant dispatch to dispatch values to store
   const dispatch = useDispatch();
 
+  //function to get crypto data from API
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1"
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=200&page=1`
       );
+      //saving the data to redux store- Coins
       dispatch(updateC(response.data));
     } catch (error) {
+      //logs the error
       console.log(error);
     }
   }
 
+  //calls the function to fetch crypto data once the component mounts using useEffect hook.
   useEffect(() => {
-    fetchData();
+    //setting a timer so that the function is called once every 1800ms.
+    const timer = setTimeout(() => {
+      //function to call axios to get the Crypto data.
+      fetchData();
+    }, 1800);
+    return () => clearTimeout(timer); // clearing the timer
   });
 
+  console.log(coins);
   return (
     <div className="min-h-[75vh] min-w-[90vw] xl:min-w-[22.5vw] overflow-auto border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white">
       <div className="p-3 px-5 text-lg font-bold text-center italic border-b-2 border-solid border-slate-50">
@@ -65,7 +77,7 @@ export default function CoinList() {
                         : "text-red-500"
                     }`}
                   >
-                    {coin.price_change_percentage_24h > 0 ? "+ " : null}
+                    {coin.price_change_percentage_24h > 0 ? "+" : null}
                     {coin.price_change_percentage_24h}%
                   </span>
                 </div>
