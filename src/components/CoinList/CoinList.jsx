@@ -8,6 +8,20 @@ export default function CoinList() {
   // getting currency and coin data from redux store
   const { currency } = useSelector((store) => store.currency);
   const { coins } = useSelector((store) => store.coins);
+  const currencyLogo = {
+    USD: "$ ",
+    INR: "₹ ",
+    GBP: "£ ",
+    JPY: "¥ ",
+    EUR: "€ ",
+    RUB: "₽ ",
+    AUD: "$ ",
+    CAD: "$ ",
+    KWD: "د.ك ",
+    BTC: "₿ ",
+    ETH: "♦ ",
+    BNB: "BNB ",
+  };
   //declaring a constant dispatch to dispatch values to store
   const dispatch = useDispatch();
 
@@ -62,7 +76,8 @@ export default function CoinList() {
                           <IoCaretDown />
                         </div>
                       )}
-                      ${coin.current_price}
+                      {currencyLogo[currency]}
+                      {coin.current_price}
                     </span>
                   </div>
                 </div>

@@ -10,7 +10,7 @@ export default function Main() {
         <div className="grid col-span-1 xl:col-span-9">
           <Dashboard />
         </div>
-        <div className="grid place-content-center col-span-1 xl:col-span-3 bg-white rounded-md">
+        <div className="grid place-content-center col-span-1 xl:col-span-3">
           <CoinList />
         </div>
       </div>
