@@ -45,11 +45,10 @@ export default function CoinList() {
     const timer = setTimeout(() => {
       //function to call axios to get the Crypto data.
       fetchData();
-    }, 1800);
+    });
     return () => clearTimeout(timer); // clearing the timer
-  });
+  }, [currency]);
 
-  console.log(coins);
   return (
     <div className="min-h-[75vh] min-w-[90vw] xl:min-w-[22.5vw] overflow-auto border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white">
       <div className="p-3 px-5 text-lg font-bold text-center italic border-b-2 border-solid border-slate-50">
