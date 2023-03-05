@@ -14,3 +14,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.active {
+  background-color: #2864ab;
+  border-color: #2864ab; /*#3274c6*/
+  color: #ffffff;
+}

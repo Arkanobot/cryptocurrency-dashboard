@@ -28,13 +28,16 @@ ChartJS.register(
 
 export default function Chart() {
   const { currency } = useSelector((store) => store.currency);
+  const { cryptoName } = useSelector((store) => store.coins);
+  const { days, dataDuration } = useSelector((store) => store.days);
   const [coinData, setCoinData] = useState();
-  const crypto = "bitcoin";
-  const duration = 365;
+  // const crypto = "bitcoin";
+  // const duration = 365;
+  // const interval = "daily";
   async function fetchData() {
     try {
       const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${crypto}/market_chart?vs_currency=${currency}&days=${duration}&interval=weekly`
+        `https://api.coingecko.com/api/v3/coins/${cryptoName}/market_chart?vs_currency=${currency}&days=${days}&interval=${dataDuration}`
       );
       setCoinData(response.data);
     } catch (error) {
@@ -45,7 +48,7 @@ export default function Chart() {
   useEffect(() => {
     //function to call axios to get the Crypto data.
     fetchData();
-  }, [currency]);
+  }, [currency, cryptoName, days, dataDuration]);
   let options;
   let data;
 
@@ -54,6 +57,9 @@ export default function Chart() {
       x: data[0],
       y: data[1].toFixed(2),
     }));
+    // const months = coinPrice.map((item) => moment(item.x).format("MMM YY"));
+    // const filteredMonths = [...new Set(months)];
+    // console.log(filteredMonths);
     options = {
       maintainAspectRatio: false,
       plugins: {
@@ -65,24 +71,44 @@ export default function Chart() {
         },
       },
     };
-    data = {
-      labels: coinPrice.map((value) => moment(value.x).format("MMM Do YY")),
-      datasets: [
-        {
-          fill: true,
-          label: crypto.toUpperCase(),
-          data: coinPrice.map((value) => value.y),
-          borderWidth: 2,
-          borderColor: "rgb(53, 152, 235)",
-          backgroundColor: "rgba(53,152, 235, 0.2)",
-          hoverBackgroundColor: "rgba(255,99,132,0.4)",
-          hoverBorderColor: "rgba(255,99,132,1)",
-        },
-      ],
-    };
+    if (days === 1) {
+      data = {
+        labels: coinPrice.map((value) =>
+          moment(value.x).format("MMM Do, h:mm a")
+        ),
+        datasets: [
+          {
+            fill: true,
+            label: cryptoName.toUpperCase(),
+            data: coinPrice.map((value) => value.y),
+            borderWidth: 2,
+            borderColor: "rgb(53, 152, 235)",
+            backgroundColor: "rgba(53,152, 235, 0.2)",
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)",
+          },
+        ],
+      };
+    } else {
+      data = {
+        labels: coinPrice.map((value) => moment(value.x).format("MMM Do YY")),
+        datasets: [
+          {
+            fill: true,
+            label: cryptoName.toUpperCase(),
+            data: coinPrice.map((value) => value.y),
+            borderWidth: 2,
+            borderColor: "rgb(53, 152, 235)",
+            backgroundColor: "rgba(53,152, 235, 0.2)",
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)",
+          },
+        ],
+      };
+    }
   }
   return (
-    <div className="flex relative my-5 w-[85vw] h-[35vh] xl:w-[66vw] 2xl:w-[69vw] bg-white">
+    <div className="flex mx-0 md:mx-5 my-2 relative w-[85vw] h-[35vh] xl:w-[66vw] 2xl:w-[67vw]">
       {coinData !== undefined ? (
         <div style={{ padding: "5px", width: "100%", height: "100%" }}>
           <Line

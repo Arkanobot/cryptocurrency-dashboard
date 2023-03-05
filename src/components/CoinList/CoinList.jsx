@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { IoCaretDown, IoCaretUp } from "react-icons/io5";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { updateC } from "../../redux/coinData";
+import { updateC, updateCryptoList } from "../../redux/coinData";
 
 export default function CoinList() {
   // getting currency and coin data from redux store
@@ -33,6 +33,7 @@ export default function CoinList() {
       );
       //saving the data to redux store- Coins
       dispatch(updateC(response.data));
+      dispatch(updateCryptoList(response.data.map((item) => item.id)));
     } catch (error) {
       //logs the error
       console.log(error);
