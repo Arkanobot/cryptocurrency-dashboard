@@ -7,12 +7,14 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Filler,
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import moment from "moment/moment";
 
 ChartJS.register(
@@ -20,6 +22,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Filler,
@@ -30,10 +33,9 @@ export default function Chart() {
   const { currency } = useSelector((store) => store.currency);
   const { cryptoName } = useSelector((store) => store.coins);
   const { days, dataDuration } = useSelector((store) => store.days);
+  const { currentChart } = useSelector((store) => store.misc);
   const [coinData, setCoinData] = useState();
-  // const crypto = "bitcoin";
-  // const duration = 365;
-  // const interval = "daily";
+
   async function fetchData() {
     try {
       const response = await axios.get(
@@ -48,7 +50,7 @@ export default function Chart() {
   useEffect(() => {
     //function to call axios to get the Crypto data.
     fetchData();
-  }, [currency, cryptoName, days, dataDuration]);
+  }, [currency, cryptoName, days, dataDuration, currentChart]);
   let options;
   let data;
 
@@ -60,6 +62,7 @@ export default function Chart() {
     // const months = coinPrice.map((item) => moment(item.x).format("MMM YY"));
     // const filteredMonths = [...new Set(months)];
     // console.log(filteredMonths);
+
     options = {
       maintainAspectRatio: false,
       plugins: {
@@ -68,6 +71,12 @@ export default function Chart() {
           title: {
             position: "end",
           },
+        },
+      },
+      scales: {
+        y: {
+          min: Math.min(...coinPrice.map((obj) => obj.y)),
+          max: Math.max(...coinPrice.map((obj) => obj.y)),
         },
       },
     };
@@ -110,14 +119,25 @@ export default function Chart() {
   return (
     <div className="flex mx-0 md:mx-5 my-2 relative w-[85vw] h-[35vh] xl:w-[66vw] 2xl:w-[67vw]">
       {coinData !== undefined ? (
-        <div style={{ padding: "5px", width: "100%", height: "100%" }}>
-          <Line
-            options={options}
-            data={data}
-            height={"80%"}
-            updateMode="resize"
-          />
-        </div>
+        currentChart === "Line Chart" ? (
+          <div style={{ padding: "5px", width: "100%", height: "100%" }}>
+            <Line
+              options={options}
+              data={data}
+              height={"80%"}
+              updateMode="resize"
+            />
+          </div>
+        ) : currentChart === "Bar - Vertical" ? (
+          <div style={{ padding: "5px", width: "100%", height: "100%" }}>
+            <Bar
+              options={options}
+              data={data}
+              height={"80%"}
+              updateMode="resize"
+            />
+          </div>
+        ) : null
       ) : (
         <div>Loading...</div>
       )}

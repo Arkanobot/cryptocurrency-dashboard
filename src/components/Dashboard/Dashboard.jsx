@@ -1,7 +1,6 @@
 import React from "react";
 import Currency from "./Currency";
 import SearchBar from "./SearchBar";
-import Chart from "./Chart";
 import CurrencyHistory from "./CurrencyHistory";
 // import CryptoConvert from "./CryptoConvert";
 // import Portfolio from "./Portfolio";

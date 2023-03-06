@@ -4,14 +4,15 @@ import Chart from "./Chart";
 import DropdownButton from "./DropdownButton";
 import { updateCryptoName } from "../../redux/coinData";
 import { updateDataDuration, updateDays } from "../../redux/daysData";
-import { updateActiveButton } from "../../redux/misc";
+import { updateActiveButton, updateCurrentChart } from "../../redux/misc";
 
 function CurrencyHistory() {
   const { activeButton } = useSelector((state) => state.misc);
   const { cryptoList, cryptoName } = useSelector((state) => state.coins);
+  const { currentChart } = useSelector((state) => state.misc);
   const timeline = ["1D", "1W", "1M", "6M", "1Y"];
   const chartVariant = ["Line Chart", "Bar - Horizontal", "Bar - Vertical"];
-  const currentChart = ["Line Chart"];
+  // const currentChart = ["Line Chart"];
   let day;
   let duration;
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function CurrencyHistory() {
   };
 
   const handleChangeList = (chart) => {
-    console.log(chart);
+    dispatch(updateCurrentChart(chart));
   };
 
   const handleTimeChange = (time) => {
