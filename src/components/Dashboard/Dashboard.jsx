@@ -2,8 +2,8 @@ import React from "react";
 import Currency from "./Currency";
 import SearchBar from "./SearchBar";
 import CurrencyHistory from "./CurrencyHistory";
-// import CryptoConvert from "./CryptoConvert";
-// import Portfolio from "./Portfolio";
+import CryptoConvert from "./CryptoConvert";
+import Portfolio from "./Portfolio";
 
 export default function Dashboard() {
   return (
@@ -18,6 +18,14 @@ export default function Dashboard() {
       </div>
       <div>
         <CurrencyHistory />
+      </div>
+      <div className="flex">
+        <div className="mr-5 my-4 xl:my-1 lg:basis-[48.3%]">
+          <Portfolio />
+        </div>
+        <div className="my-4 xl:my-1 lg:basis-[48.5%]">
+          <CryptoConvert />
+        </div>
       </div>
     </div>
   );

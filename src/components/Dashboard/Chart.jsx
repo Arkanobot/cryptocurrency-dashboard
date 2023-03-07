@@ -52,6 +52,7 @@ export default function Chart() {
     fetchData();
   }, [currency, cryptoName, days, dataDuration, currentChart]);
   let options;
+  let optionsHorizontalBar;
   let data;
 
   if (coinData !== undefined) {
@@ -75,6 +76,16 @@ export default function Chart() {
       },
       scales: {
         y: {
+          min: Math.min(...coinPrice.map((obj) => obj.y)),
+          max: Math.max(...coinPrice.map((obj) => obj.y)),
+        },
+      },
+    };
+
+    optionsHorizontalBar = {
+      indexAxis: "y",
+      scales: {
+        x: {
           min: Math.min(...coinPrice.map((obj) => obj.y)),
           max: Math.max(...coinPrice.map((obj) => obj.y)),
         },
@@ -137,6 +148,13 @@ export default function Chart() {
               updateMode="resize"
             />
           </div>
+        ) : currentChart === "Bar - Horizontal" ? (
+          <Bar
+            options={optionsHorizontalBar}
+            data={data}
+            height={"80%"}
+            updateMode="resize"
+          />
         ) : null
       ) : (
         <div>Loading...</div>

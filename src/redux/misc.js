@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const miscSlice = createSlice({
   name: "misc",
   initialState: {
-    activeButton: 1,
-    currentChart: "Line Chart",
+    activeButton: "1D",
+    currentChart: "Bar - Vertical",
   },
   reducers: {
     updateActiveButton: (state, action) => {
