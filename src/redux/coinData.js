@@ -6,6 +6,8 @@ export const coinDataSlice = createSlice({
     coins: [],
     cryptoName: "bitcoin",
     cryptoList: [],
+    selectSellCrypto: "bitcoin",
+    selectBuyCrypto: "ethereum",
   },
   reducers: {
     updateC: (state, action) => {
@@ -17,9 +19,20 @@ export const coinDataSlice = createSlice({
     updateCryptoList: (state, action) => {
       state.cryptoList = action.payload;
     },
+    updateSelectSellCrypto: (state, action) => {
+      state.selectSellCrypto = action.payload;
+    },
+    updateSelectBuyCrypto: (state, action) => {
+      state.selectBuyCrypto = action.payload;
+    },
   },
 });
 
-export const { updateC, updateCryptoName, updateCryptoList } =
-  coinDataSlice.actions;
+export const {
+  updateC,
+  updateCryptoName,
+  updateCryptoList,
+  updateSelectSellCrypto,
+  updateSelectBuyCrypto,
+} = coinDataSlice.actions;
 export default coinDataSlice.reducer;

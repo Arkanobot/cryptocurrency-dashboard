@@ -51,11 +51,11 @@ export default function CoinList() {
   }, [currency]);
 
   return (
-    <div className="min-h-[75vh] min-w-[90vw] xl:min-w-[22.5vw] overflow-auto border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white">
+    <div className="min-w-[87vw] xl:min-w-[22.5vw] overflow-auto border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white">
       <div className="p-3 px-5 text-lg font-bold text-center italic border-b-2 border-solid border-slate-50">
         <span>Cryptocurrency by Market Cap</span>
       </div>
-      <div className="p-5 max-h-[70vh] overflow-auto">
+      <div className="p-5 max-h-[73vh] overflow-auto">
         {coins &&
           coins.map((coin) => {
             return (

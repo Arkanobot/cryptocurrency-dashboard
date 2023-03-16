@@ -128,7 +128,9 @@ export default function Chart() {
     }
   }
   return (
-    <div className="flex mx-0 md:mx-5 my-2 relative w-[85vw] h-[35vh] xl:w-[66vw] 2xl:w-[67vw]">
+    <div className="flex mx-0 md:mx-5 my-2 relative w-[97%] h-[35vh]">
+      {" "}
+      {/*w-[85vw]  xl:w-[66vw] 2xl:w-[67vw]*/}
       {coinData !== undefined ? (
         currentChart === "Line Chart" ? (
           <div style={{ padding: "5px", width: "100%", height: "100%" }}>

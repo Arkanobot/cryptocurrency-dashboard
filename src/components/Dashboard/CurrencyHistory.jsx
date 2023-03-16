@@ -57,11 +57,11 @@ function CurrencyHistory() {
   };
 
   return (
-    <div className="p-2 my-4 w-[88vw] xl:w-[68vw] 2xl:w-[69vw] overflow-x-auto overflow-y-hidden border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white ">
+    <div className="p-2 my-4 mx-1 w-[100%] overflow-x-auto overflow-y-hidden border-2 border-solid border-slate-50 rounded-lg shadow-md bg-white ">
       <div className="flex flex-wrap justify-between">
         <div class="flex items-center justify-center">
           <div
-            className="xl:ml-[250%] inline-flex flex-wrap md:flex-nowrap  transition duration-150 ease-in-out"
+            className="inline-flex flex-wrap md:flex-nowrap  transition duration-150 ease-in-out"
             role="toolbar"
           >
             {timeline.map((time) => {
