@@ -66,7 +66,13 @@ export default function CoinList() {
                     <span className="text-lg font-bold mx-2">{coin.name}</span>
                   </div>
                   <div>
-                    <span className={`text-md font-medium `}>
+                    <span
+                      className={`text-md font-medium ${
+                        coin.price_change_percentage_24h > 0
+                          ? "text-green-600"
+                          : "text-red-500"
+                      }`}
+                    >
                       {coin.price_change_24h > 0 ? (
                         <div className="inline-block">
                           <IoCaretUp />
@@ -76,9 +82,9 @@ export default function CoinList() {
                           <IoCaretDown />
                         </div>
                       )}
-                      {currencyLogo[currency]}
-                      {coin.current_price}
                     </span>
+                    {currencyLogo[currency]}
+                    {coin.current_price}
                   </div>
                 </div>
                 <div className="flex justify-between sm:border-b-2 sm:border-solid sm:border-slate-300 xl:border-0">

@@ -7,7 +7,7 @@ import Portfolio from "./Portfolio";
 
 export default function Dashboard() {
   return (
-    <div className="min-w-[87vw] px-[2vw] xl:px-5 xl:min-w-[65vw]">
+    <div className="min-w-[87vw] px-1 xl:min-w-[65vw]">
       <div className="flex my-5 xl:my-0 justify-between">
         <div className="">
           <Currency />

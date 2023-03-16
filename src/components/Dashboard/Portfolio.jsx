@@ -55,7 +55,7 @@ function Portfolio() {
           <span className="font-bold text-xl text-black">$1000</span>
         </div>
       </div>
-      <div className="grid place-content-center my-5 max-h-[25vh] max-w-[25vw] ">
+      <div className="grid place-content-center my-5 max-h-[25vh] xl:max-w-[25vw] ">
         <Pie data={data} options={options} />
       </div>
     </div>

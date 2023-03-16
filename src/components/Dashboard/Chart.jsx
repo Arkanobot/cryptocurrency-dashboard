@@ -151,12 +151,14 @@ export default function Chart() {
             />
           </div>
         ) : currentChart === "Bar - Horizontal" ? (
-          <Bar
-            options={optionsHorizontalBar}
-            data={data}
-            height={"80%"}
-            updateMode="resize"
-          />
+          <div style={{ padding: "5px", width: "100%", height: "100%" }}>
+            <Bar
+              options={optionsHorizontalBar}
+              data={data}
+              height={"80%"}
+              updateMode="resize"
+            />
+          </div>
         ) : null
       ) : (
         <div>Loading...</div>
