@@ -50,7 +50,7 @@ export default function CryptoConvert() {
           <div className="mt-5 lg:mt-0">
             <TextInput
               name={"Enter your amount"}
-              placeholder={"Please enter the amount to sell"}
+              placeholder={"Please enter amount"}
               funct={handleOnChangeSellValue}
             />
           </div>

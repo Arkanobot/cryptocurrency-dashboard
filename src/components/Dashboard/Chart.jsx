@@ -128,7 +128,7 @@ export default function Chart() {
     }
   }
   return (
-    <div className="flex mx-0 md:mx-5 my-2 relative w-[97%] h-[35vh]">
+    <div className="flex mx-0 md:mx-5 my-2 relative w-[95%] h-[35vh]">
       {" "}
       {/*w-[85vw]  xl:w-[66vw] 2xl:w-[67vw]*/}
       {coinData !== undefined ? (

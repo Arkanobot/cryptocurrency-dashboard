@@ -61,7 +61,7 @@ function CurrencyHistory() {
       <div className="flex flex-wrap justify-between">
         <div class="flex items-center justify-center">
           <div
-            className="inline-flex flex-wrap md:flex-nowrap  transition duration-150 ease-in-out"
+            className="inline-flex flex-wrap md:flex-nowrap  transition duration-150 ease-in-out lg:w-[45vw] justify-end"
             role="toolbar"
           >
             {timeline.map((time) => {
@@ -83,14 +83,14 @@ function CurrencyHistory() {
           </div>
         </div>
         <div className=" flex">
-          <div className="mx-4 my-2 md:my-0">
+          <div className="mx-4 my-2">
             <DropdownButton
               name={cryptoName}
               list={cryptoList}
               handleChange={handleChange}
             />
           </div>
-          <div className="my-2 md:my-0">
+          <div className="my-2">
             <DropdownButton
               name={currentChart}
               list={chartVariant}
