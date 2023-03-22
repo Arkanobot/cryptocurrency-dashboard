@@ -10,7 +10,7 @@ function TextInput({
   return (
     <div class="relative flex w-full flex-wrap items-stretch">
       <input
-        type="text"
+        type="number"
         class={`relative m-0 block w-[1px] min-w-0 flex-auto rounded border border-solid ${
           disabled === true
             ? "border-neutral-300 bg-neutral-300"
