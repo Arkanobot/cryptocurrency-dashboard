@@ -74,6 +74,7 @@ export default function Chart() {
           },
         },
       },
+      indexAxis: "x",
       scales: {
         y: {
           min: Math.min(...coinPrice.map((obj) => obj.y)),
